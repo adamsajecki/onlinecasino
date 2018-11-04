@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-public class LoginWindowDisplayTest extends MainTest {
+public class SearchResultsPageTest extends MainTest {
 
     @Test
     public void LoginWindowIsDisplayed() {

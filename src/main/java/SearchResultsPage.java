@@ -3,35 +3,41 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class SearchResultsPage {
     WebDriver driver;
-    private String xpathToSearchedTile;
-    private WebElement searchedTile;
-    private WebElement moreButton;
-    private WebElement playButton;
 
     public SearchResultsPage(WebDriver driver) {
         this.driver = driver;
     }
 
+    By moreButtonLocator = By.xpath("//button[@data-test='tile-menu-button-more']");
+    By playButtonLocator = By.cssSelector(".sc-EHOje.hGojEe");
+
+
     public SearchResultsPage hoverOverGameTile(String gameName) {
-        xpathToSearchedTile = "//section[@class='page__content search__content']//img[contains(@alt,'" + gameName +"')]";
-        searchedTile = driver.findElement(By.xpath(xpathToSearchedTile));
+        new WebDriverWait(driver,10).until(ExpectedConditions.urlContains("search"));
+        List<WebElement> listOfTiles = driver.findElements(By.cssSelector(".tile-cover__image"));
         Actions action = new Actions(driver);
-        action.moveToElement(searchedTile).perform();
+        for(WebElement element : listOfTiles) {
+            if(element.getAttribute("alt").equals(gameName)) {
+                action.moveToElement(element).perform();
+            }
+        }
         return this;
     }
 
     public SearchResultsPage clickMoreButton() {
-        moreButton = driver.findElement(By.xpath("//button[@data-test='tile-menu-button-more']"));
-        moreButton.click();
+        driver.findElement(moreButtonLocator).click();
         return this;
     }
 
     public SearchResultsPage clickPlayButton() {
-        playButton = driver.findElement(By.xpath("//button[@data-test='tile-details-button-play']"));
-        playButton.click();
+        driver.findElement(playButtonLocator).click();
         return this;
     }
 

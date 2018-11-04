@@ -1,18 +1,19 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
 public class MainPage {
     WebDriver driver;
     private String websiteAddress = "https://vegas.williamhill.com/";
-    private WebElement magnifierButton;
-    private WebElement searchBox;
+
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
+
+    By magnifierButtonLocator = By.className("btn-search-magnifier");
+    By searchBoxLocator = By.xpath("//input[@class='sc-dxgOiQ cHTTOm']");
 
     public MainPage openMainPage() {
         driver.manage().window().maximize();
@@ -22,14 +23,12 @@ public class MainPage {
     }
 
     public MainPage clickMagnifierButton() {
-        magnifierButton = driver.findElement(By.className("btn-search-magnifier"));
-        magnifierButton.click();
+        driver.findElement(magnifierButtonLocator).click();
         return this;
     }
 
     public MainPage setSearchItem(String searchedItem) {
-        searchBox = driver.findElement(By.xpath("//input[@class='sc-dxgOiQ cHTTOm']"));
-        searchBox.sendKeys(searchedItem);
+        driver.findElement(searchBoxLocator).sendKeys(searchedItem);
         return this;
     }
 }
