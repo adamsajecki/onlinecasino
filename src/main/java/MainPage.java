@@ -12,8 +12,8 @@ public class MainPage {
         this.driver = driver;
     }
 
-    By magnifierButtonLocator = By.className("btn-search-magnifier");
-    By searchBoxLocator = By.xpath("//input[@class='sc-dxgOiQ cHTTOm']");
+    By magnifierButtonLocator = By.cssSelector(".btn-search-magnifier");
+    By searchBoxLocator = By.cssSelector(".sc-dxgOiQ.cHTTOm");
 
     public MainPage openMainPage() {
         driver.manage().window().maximize();
@@ -27,8 +27,8 @@ public class MainPage {
         return this;
     }
 
-    public MainPage setSearchItem(String searchedItem) {
+    public SearchResultsPage setSearchItem(String searchedItem) {
         driver.findElement(searchBoxLocator).sendKeys(searchedItem);
-        return this;
+        return new SearchResultsPage(driver);
     }
 }

@@ -11,7 +11,6 @@ public class MainTest {
     WebDriver driver = new ChromeDriver();
 
     MainPage mainPage = new MainPage(driver);
-    SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
 
     String gameName = "Mayfair Roulette";
 

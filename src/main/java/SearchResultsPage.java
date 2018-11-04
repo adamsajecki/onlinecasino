@@ -17,6 +17,10 @@ public class SearchResultsPage {
 
     By moreButtonLocator = By.xpath("//button[@data-test='tile-menu-button-more']");
     By playButtonLocator = By.cssSelector(".sc-EHOje.hGojEe");
+    By loginWindowLocator = By.cssSelector(".login-component__wrapper");
+    By usernameFieldLocator = By.cssSelector("#login-form-username");
+    By passwordFieldLocator = By.cssSelector("#login-form-password");
+    By loginButtonLocator = By.cssSelector(".sb-btn.sb-btn--expanded.sb-btn--success.sb-btn--normal.c-login-form__submit-button");
 
 
     public SearchResultsPage hoverOverGameTile(String gameName) {
@@ -41,8 +45,25 @@ public class SearchResultsPage {
         return this;
     }
 
-    public SearchResultsPage validateIfFullLoginWindowIsDisplayed() {
-        Assert.assertTrue(driver.findElement(By.className("login-component__wrapper")).isDisplayed());
+    public SearchResultsPage assertThatFullLoginWindowIsDisplayed() {
+        Assert.assertTrue(driver.findElement(loginWindowLocator).isDisplayed());
         return this;
     }
+
+    public SearchResultsPage assertThatUsernameFieldIsDisplayed() {
+        Assert.assertTrue(driver.findElement(usernameFieldLocator).isDisplayed());
+        return this;
+    }
+
+    public SearchResultsPage assertThatPasswordFieldIsDisplayed() {
+        Assert.assertTrue(driver.findElement(passwordFieldLocator).isDisplayed());
+        return this;
+    }
+
+    public SearchResultsPage assertThatLogInButtonIsDisplayed() {
+        Assert.assertTrue(driver.findElement(loginButtonLocator).isDisplayed());
+        return this;
+    }
+
+
 }

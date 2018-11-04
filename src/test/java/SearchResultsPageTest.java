@@ -6,12 +6,14 @@ public class SearchResultsPageTest extends MainTest {
     public void LoginWindowIsDisplayed() {
         mainPage
                 .clickMagnifierButton()
-                .setSearchItem(gameName);
-        searchResultsPage
+                .setSearchItem(gameName)
                 .hoverOverGameTile(gameName)
                 .clickMoreButton()
                 .clickPlayButton()
-                .validateIfFullLoginWindowIsDisplayed();
+                .assertThatFullLoginWindowIsDisplayed()
+                .assertThatUsernameFieldIsDisplayed()
+                .assertThatPasswordFieldIsDisplayed()
+                .assertThatLogInButtonIsDisplayed();
 
     }
 }
