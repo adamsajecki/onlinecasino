@@ -41,10 +41,8 @@ public class MainTest {
     }
 
     @After
-    public void closeBrowser() throws Exception {
-        Thread.sleep(5000);
+    public void closeBrowser() {
         driver.quit();
-        // POZBYĆ SIĘ SLEEP I EXCEPTION!!!!!!!!!!!!!!!!!!
     }
 
     @AfterClass
